@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NotepadJS App</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <h1>NotepadJS App</h1>
+    <form action="/" method="post">
+      <input type="text" name="name" id="name" placeholder="Name" />
+      <br />
+      <textarea name="content" id="content" rows="10" cols="50" placeholder="Content"></textarea>
+      <br />
+      <button type="submit">Submit</button>
+    </form>
+    <h2>JSON Data</h2>
+    <% if (jsonData && jsonData.length > 0) { %> <% const sortedData = JSON.parse(jsonData).sort((a, b) => b.id - a.id); %> <% sortedData.forEach((item) => { %>
+    <div class="post">
+      <p>ID: <%= item.id %></p>
+      <p>Name: <%= item.name %></p>
+      <pre><code><%= item.textarea %></code></pre>
+      <form action="/delete/<%= item.id %>" method="post">
+        <button type="submit" class="delete-button">Delete</button>
+      </form>
+    </div>
+    <% }); %> <% } else { %>
+    <p>No data available.</p>
+    <% } %>
+
+    <!-- ========== highlight Component... ========== -->
+    <script src="https://frankgp.com/lib/highlight.js" type="module"></script>
+    <!-- ========== highlight Component. ========== -->
+  </body>
+</html>
